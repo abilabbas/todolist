@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import "./App.css";
+import "./Todoinput.js";
 
-function App() {
+const App = () => {
+  const [todos, setTodos] = useState([]);
+  const [todo, setTodo] = useState("");
+
+  const addTodo = () => {
+    if (todo !== ""){
+      setTodos([...todos, todo]);
+      setTodo("");
+    }
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className= "App">
+      <h1>React todo app</h1>
+
+      <div className="input-wrapper">
+        <input type="text" name="todo" placeholder ="Create a new todo" />
+        <button className="add-button">Add</button>
+      </div>
     </div>
-  );
+  )
 }
 
 export default App;
