@@ -1,6 +1,7 @@
 import { useState } from "react";
+import Todoinput from "./Todoinput";
+import TodoList from "./TodoList";
 import "./App.css";
-import "./Todoinput.js";
 
 const App = () => {
   const [todos, setTodos] = useState([]);
@@ -13,14 +14,18 @@ const App = () => {
     }
   };
 
-  return (
-    <div className= "App">
-      <h1>React todo app</h1>
+  const deleteTodo = (text) => {
+    const newTodos = todos.filter((todo) => {
+      return todo !== text;
+    });
+    setTodos(newTodos);
+  };
 
-      <div className="input-wrapper">
-        <input type="text" name="todo" placeholder ="Create a new todo" />
-        <button className="add-button">Add</button>
-      </div>
+  return (
+    <div className="App">
+      <h1>React Todo App</h1>
+      <Todoinput todo={todo} setTodo={setTodo} addTodo={addTodo} />
+      <TodoList list={todos} remove={deleteTodo} />
     </div>
   )
 }
